@@ -180,7 +180,7 @@ static NSString *jmlink_getParam_key = @"jmlink_getParam_key";
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     JMLog(@"application:handleOpenURL: %@",url);
-    if (self.isSetup) {
+    if (self.isSetup && ([url.absoluteString containsString:@"yuyueguahao"] || [url.absoluteString containsString:@"duodianyi"])) {
         return [JMLinkService routeMLink:url];
     }else{
         self.cacheOpenUrl = url;
@@ -189,7 +189,7 @@ static NSString *jmlink_getParam_key = @"jmlink_getParam_key";
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     JMLog(@"application:openURL:options: %@", url);
-    if (self.isSetup) {
+    if (self.isSetup && ([url.absoluteString containsString:@"yuyueguahao"] || [url.absoluteString containsString:@"duodianyi"])) {
         return [JMLinkService routeMLink:url];
     }else{
         self.cacheOpenUrl = url;
