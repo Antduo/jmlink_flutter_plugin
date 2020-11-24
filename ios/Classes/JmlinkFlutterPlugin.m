@@ -179,21 +179,21 @@ static NSString *jmlink_getParam_key = @"jmlink_getParam_key";
     }
 }
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    JMLog(@"application:handleOpenURL:");
-    if (self.isSetup && (![url.host isEqualToString:@"safepay"] || ![url.host isEqualToString:@"pay"])) {
+    JMLog(@"application:handleOpenURL: %@",url);
+    if (self.isSetup) {
         return [JMLinkService routeMLink:url];
     }else{
         self.cacheOpenUrl = url;
-        return YES;
+        return NO;
     }
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    JMLog(@"application:openURL:options:");
-    if (self.isSetup && (![url.host isEqualToString:@"safepay"] || ![url.host isEqualToString:@"pay"])) {
+    JMLog(@"application:openURL:options: %@", url);
+    if (self.isSetup) {
         return [JMLinkService routeMLink:url];
     }else{
         self.cacheOpenUrl = url;
-        return YES;
+        return NO;
     }
 }
 
